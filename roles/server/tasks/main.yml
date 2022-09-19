@@ -1,0 +1,2 @@
+- include: go-server.yml
+- include: db-setup.yml

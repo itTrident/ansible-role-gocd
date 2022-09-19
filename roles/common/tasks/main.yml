@@ -1,0 +1,24 @@
+---
+ #Group and User add
+- name: Add GOCD group
+  group: gid={{ GOCD_GROUPID }} name={{ GOCD_GROUP }} state=present 
+- name: add gocd user 
+  user: name={{ GOCD_USER }} comment="GoCD User" uid={{ GOCD_USERID }} group={{ GOCD_GROUP }} shell={{ GOCD_SHELL }} password={{ GOCD_PASS }} #system=yes
+
+#Geting pkg and gpg key form internet
+- name: add gocd-gpg-key
+  apt_key:
+    url: https://download.gocd.org/GOCD-GPG-KEY.asc
+    state: present
+
+- name: Add gocd repository
+  ansible.builtin.apt_repository:
+    repo: deb https://download.gocd.org /
+    state: present
+    filename: gocd
+    
+- name: update all service
+  become: yes
+  apt:
+    update_cache: yes
+...
