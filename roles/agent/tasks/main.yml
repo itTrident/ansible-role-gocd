@@ -10,8 +10,8 @@
    path: /usr/share/go-agent/
    state: directory
    recurse: yes
-   owner: "{{ GOCD_USER }}"
-   group: "{{ GOCD_GROUP }}"
+   owner: "{{ GOCD_USER | default('go') }}"
+   group: "{{ GOCD_GROUP | default('gocd') }}"
 
 - name: Replace go-agent template
   ansible.builtin.template:

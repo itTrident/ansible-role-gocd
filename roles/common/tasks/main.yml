@@ -1,9 +1,9 @@
 ---
  #Group and User add
 - name: Add GOCD group
-  group: gid={{ GOCD_GROUPID }} name={{ GOCD_GROUP }} state=present 
+  group: gid={{ GOCD_GROUPID | default('5000') }} name={{ GOCD_GROUP | default('gocd') }} state=present 
 - name: add gocd user 
-  user: name={{ GOCD_USER }} comment="GoCD User" uid={{ GOCD_USERID }} group={{ GOCD_GROUP }} shell={{ GOCD_SHELL }} password={{ GOCD_PASS }} #system=yes
+  user: name="{{ GOCD_USER | default('go') }}" comment="GoCD User" uid={{ GOCD_USERID | default('5000') }} group="{{ GOCD_GROUP | default('gocd') }}" shell={{ GOCD_SHELL | default('/bin/bash') }} password={{ GOCD_PASS | default('$6$PH1LJJtuS/P8A5un$YfQwg/2uwwo4k5W.6LEj1ZMeS8UPLjFNGpX/KmfOPLZgStg/do4OXaOWH6/e8a6/Pbh7cqiMCmTJqqWFiG4gQ/') }}
 
 #Geting pkg and gpg key form internet
 - name: add gocd-gpg-key

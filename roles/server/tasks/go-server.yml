@@ -11,6 +11,6 @@
     path: /usr/share/go-server/
     state: directory
     recurse: yes
-    owner: "{{ GOCD_USER }}"
-    group: "{{ GOCD_GROUP }}"
+    owner: "{{ GOCD_USER | default('go') }}"
+    group: "{{ GOCD_GROUP | default('gocd') }}"
 ...
