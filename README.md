@@ -70,7 +70,7 @@ This repository is organized as a multi-role playbook. You must reference follow
 | `GOCD_SHELL` | `/bin/bash` | `It's a default shell for user` |
 | `GOCD_PASS` | `go_pass` | `It's a default user passwor, it encrypted by SHA512.` |
 
-*note: If you chage the default user password, please encrypt then pass the encrypted result as a variable valuse, then only it should work. Use the below command to encript the password*
+*note: If you chage the default GOCD_PASS password, please encrypt then pass the encrypted result as a variable valuse, then only it should work. Use the below command to encript the password*
   ``` 
   python3 -c 'import crypt; print(crypt.crypt("password", crypt.mksalt(crypt.METHOD_SHA512)))'
   ```
