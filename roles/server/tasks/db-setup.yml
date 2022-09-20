@@ -23,15 +23,15 @@
   apt:
     update_cache: yes
   
-# - name: Install Database in go-server (It might take some to install all dependencies)
-#   apt: name={{ item }} state=present
-#   with_items:
-#     - postgresql
-#     - postgresql-contrib
-#     - postgresql-client
-#     - python3-psycopg2
-#     - acl
-#     - python3-pip
+- name: Install Database in go-server (It might take some to install all dependencies)
+  apt: name={{ item }} state=present
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    - postgresql-client
+    - python3-psycopg2
+    - acl
+    - python3-pip
 
 - name: Replace the word peer to trust in pg_hba.conf file.
   ansible.builtin.lineinfile:
@@ -88,10 +88,29 @@
   ansible.builtin.copy:
     src: db.properties
     dest: /etc/go/
-    owner: "{{ GOCD_USER }}"
-    group: "{{ GOCD_GROUP }}"
+    owner: "{{ GOCD_USER | default('go') }}"
+    group: "{{ GOCD_GROUP | default('gocd') }}"
     mode: '0664'
-   
+  tags: a
+
+- name: Replace the db-name in db.properties file.
+  ansible.builtin.lineinfile:
+    path: /etc/go/db.properties
+    search_string: 'gocd-dbname'
+    line: db.url=jdbc:postgresql://localhost:5432/{{ GOCD_DATABASE | default('gocd_database') }}
+
+- name: Replace the db-user name in db.properties file.
+  ansible.builtin.lineinfile:
+    path: /etc/go/db.properties
+    search_string: 'gocd_db_user'
+    line: db.user={{ GOCD_DATABASE_USER | default('gocd_database_user') }}
+
+- name: Replace the db-password in db.properties file.
+  ansible.builtin.lineinfile:
+    path: /etc/go/db.properties
+    search_string: 'gocd_db_password'
+    line: db.password={{ GOCD_DATABASE_PASSWORD | default('gocd_database_password') }}
+
 - name: start go-server service 
   become: yes
   service:
