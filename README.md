@@ -13,7 +13,7 @@ Product details are available at http://www.go.cd .  Source available at https:/
 * 2 servers one for GoCD server and another one for GoCD agent
 
 ## Host file configuration
- On hosts file, you have to give server IP address under the [server] group and you have to give agent IP address under the [agent] group. Becasue the role should run based on the hosts group names. if you chaged the hosts file group names, please give the same in site.yml file.
+ On hosts file, you have to give server IP address under the [server] group and you have to give agent IP address under the [agents] group. Becasue the role should run based on the hosts group names. if you chaged the hosts file group names, please give the same in site.yml file.
 
 ## Database details:
 - It will be install Postgresql 14 version.
