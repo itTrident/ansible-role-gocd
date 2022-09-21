@@ -54,7 +54,8 @@ This repository is organized as a multi-role playbook. You must reference follow
     - agent
   vars:
     GOCD_USER: 
-    GOCD_GROUP: 
+    GOCD_GROUP:
+    GO_SERVER_IP: 
 ```
 
 # Variables:
@@ -89,7 +90,9 @@ This repository is organized as a multi-role playbook. You must reference follow
 | ------------- | ------------- | ----------- |
 | `GOCD_USER` | `go` | `It's a default user name` |
 | `GOCD_GROUP` | `gocd` | `It's a default group name` |
+| `GO_SERVER_IP` | `NULL` | `Must be given the GO_server_IP for integrate go-server and go-agent` | 
 
+*note: `GO_SERVER_IP` is must*
 
 ## Contributing
 Don't hesitate to create a pull request
