@@ -13,3 +13,5 @@
   become: yes
   roles:
     - agent
+  vars:
+    GO_SERVER_IP: 

@@ -13,7 +13,7 @@ Product details are available at http://www.go.cd .  Source available at https:/
 * 2 servers one for GoCD server and another one for GoCD agent
 
 ## Host file configuration
- On hosts file, you have to give server IP address under the [server] group and you have to give agent IP address under the [agent] group. Becasue the role should run based on the hosts group names. if you chaged the hosts file group names, please give the same in site.yml file.
+ On hosts file, you have to give server IP address under the [server] group and you have to give agent IP address under the [agents] group. Becasue the role should run based on the hosts group names. if you chaged the hosts file group names, please give the same in site.yml file.
 
 ## Database details:
 - It will be install Postgresql 14 version.
@@ -54,7 +54,8 @@ This repository is organized as a multi-role playbook. You must reference follow
     - agent
   vars:
     GOCD_USER: 
-    GOCD_GROUP: 
+    GOCD_GROUP:
+    GO_SERVER_IP: 
 ```
 
 # Variables:
@@ -89,7 +90,9 @@ This repository is organized as a multi-role playbook. You must reference follow
 | ------------- | ------------- | ----------- |
 | `GOCD_USER` | `go` | `It's a default user name` |
 | `GOCD_GROUP` | `gocd` | `It's a default group name` |
+| `GO_SERVER_IP` | `NULL` | `Must be given the GO_server_IP for integrate go-server and go-agent` | 
 
+*note: `GO_SERVER_IP` is must*
 
 ## Contributing
 Don't hesitate to create a pull request
